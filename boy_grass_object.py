@@ -25,11 +25,11 @@ class Boy:
     def draw(self):
         self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
 
-class Boll21:
+class Bolls:
     def __init__(self):
         self.x, self.y = random.randint(0, 800), 599
         self.frame = random.randint(0, 7)
-        self.image = load_image('ball21x21.png')
+        self.image = load_image(random.choice(['ball21x21.png', 'ball41x41.png']))
 
     def update(self):
         self.y -= random.randint(0, 10)
@@ -62,24 +62,17 @@ def reset_world():
     bolls = []
 
     grass = Grass()
-    bolls = Boll21()
 
     world.append(grass)
-    world.append(bolls)
 
     team = [Boy() for i in range(11)]
-    bolls = [Boll21() for i in range(20)]
+    bolls = [Bolls() for i in range(20)]
 
     world += team
     world += bolls
 
 
 def update_world():
-    # grass.update()
-    # # boy.update()
-    # for boy in team:
-    #     boy.update()
-    # pass
 
     for o in world:
         o.update()
@@ -87,10 +80,7 @@ def update_world():
 
 def render_world():
     clear_canvas()
-    # grass.draw()
-    # # boy.draw()
-    # for boy in team:
-    #     boy.draw()
+
     for o in world:
         o.draw()
 
